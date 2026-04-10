@@ -1,0 +1,36 @@
+import { Router } from 'express';
+import { reviewSpeakingRequestSchema } from '../../shared/src/schemas.js';
+import { makeHash, getJson, setJson } from '../services/cache.js';
+import { reviewQueue } from '../services/queue.js';
+import { reviewQueueEvents } from '../services/queueEvents.js';
+import { assertReviewAllowed, getOrCreateUser, incrementUsage } from '../services/usage.js';
+
+export const reviewRouter = Router();
+
+reviewRouter.post('/api/review-speaking', async (req, res, next) => {
+  try {
+    const input = reviewSpeakingRequestSchema.parse(req.body);
+    await getOrCreateUser(req.appUserId, req.isPremium);
+    await assertReviewAllowed(req.appUserId, req.isPremium);
+
+    const cacheKey = `review:${makeHash({ ...input, premium: req.isPremium })}`;
+    const cached = await getJson(cacheKey);
+    if (cached) {
+      return res.json({ ...cached, meta: { ...(cached.meta || {}), cached: true, isPremium: req.isPremium } });
+    }
+
+    const job = await reviewQueue.add('review-speaking', {
+      appUserId: req.appUserId,
+      isPremium: req.isPremium,
+      payload: input,
+      cacheKey
+    });
+
+    const result = await job.waitUntilFinished(reviewQueueEvents, 30_000);
+    await incrementUsage(req.appUserId, 'review_count');
+    await setJson(cacheKey, result, 600);
+    res.json(result);
+  } catch (err) {
+    next(err);
+  }
+});
