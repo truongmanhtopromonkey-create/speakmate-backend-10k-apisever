@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import multer from 'multer';
-import { conversationReplyRequestSchema } from '../../shared/src/schemas.js';
+import { conversationReplyRequestSchema } from '../worker/schemas.js';
 import { conversationQueue, pronunciationQueue } from '../services/queue.js';
 import { conversationQueueEvents, pronunciationQueueEvents } from '../services/queueEvents.js';
 import { assertConversationAllowed, getOrCreateUser, incrementUsage } from '../services/usage.js';
