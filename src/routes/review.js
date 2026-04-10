@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { reviewSpeakingRequestSchema } from '../worker/schemas.js';
+import { reviewSpeakingRequestSchema } from '../workers/schemas.js';
 import { makeHash, getJson, setJson } from '../services/cache.js';
 import { reviewQueue } from '../services/queue.js';
 import { reviewQueueEvents } from '../services/queueEvents.js';

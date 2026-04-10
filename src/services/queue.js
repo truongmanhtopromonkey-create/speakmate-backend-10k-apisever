@@ -1,6 +1,6 @@
 import { Queue } from 'bullmq';
 import { redis } from '../lib/redis.js';
-import { QUEUES } from '../worker/constants.js';
+import { QUEUES } from '../workers/constants.js';
 
 const common = { connection: redis, defaultJobOptions: { removeOnComplete: 100, removeOnFail: 200 } };
 

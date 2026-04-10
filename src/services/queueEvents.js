@@ -1,6 +1,6 @@
 import { QueueEvents } from 'bullmq';
 import { redis } from '../lib/redis.js';
-import { QUEUES } from '../worker/constants.js';
+import { QUEUES } from '../workers/constants.js';
 
 export const reviewQueueEvents = new QueueEvents(QUEUES.REVIEW, { connection: redis });
 export const conversationQueueEvents = new QueueEvents(QUEUES.CONVERSATION, { connection: redis });
