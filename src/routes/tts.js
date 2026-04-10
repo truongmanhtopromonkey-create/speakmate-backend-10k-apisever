@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { ttsRequestSchema } from '../worker/schemas.js';
+import { ttsRequestSchema } from '../workers/schemas.js';
 import { ttsQueue } from '../services/queue.js';
 import { ttsQueueEvents } from '../services/queueEvents.js';
 import { incrementUsage } from '../services/usage.js';
