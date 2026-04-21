@@ -61,3 +61,11 @@ create table if not exists conversation_messages (
   is_fallback boolean default false,
   created_at timestamptz not null default now()
 );
+
+create table if not exists usage_feature_trials (
+  app_user_id text not null,
+  feature_key text not null,
+  count int not null default 0,
+  updated_at timestamptz not null default now(),
+  primary key (app_user_id, feature_key)
+);

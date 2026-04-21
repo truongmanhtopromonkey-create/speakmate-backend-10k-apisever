@@ -14,8 +14,10 @@ export const env = {
   databaseUrl: required('DATABASE_URL'),
   freeDailyLimit: Number(process.env.FREE_DAILY_LIMIT || 3),
   premiumDailySoftLimit: Number(process.env.PREMIUM_DAILY_SOFT_LIMIT || 50),
-  freeConversationTurnsDaily: Number(process.env.FREE_CONVERSATION_TURNS_DAILY || 10),
+  freeConversationTurnsDaily: Number(process.env.FREE_CONVERSATION_TURNS_DAILY || 3),
+  freeTrialLimitPerFeature: Number(process.env.FREE_TRIAL_LIMIT_PER_FEATURE || 3),
   premiumConversationTurnsDaily: Number(process.env.PREMIUM_CONVERSATION_TURNS_DAILY || 150),
+  premiumTtsDaily: Number(process.env.PREMIUM_TTS_DAILY || 100),
   enableFallback: String(process.env.ENABLE_FALLBACK || 'true') === 'true',
   openaiModelText: required('OPENAI_MODEL_TEXT', 'gpt-5.4-mini')
 };

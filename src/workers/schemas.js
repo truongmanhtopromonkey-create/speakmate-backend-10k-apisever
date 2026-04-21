@@ -15,7 +15,8 @@ export const reviewSpeakingRequestSchema = z.object({
   transcript: z.string().trim().min(1),
   topicTitle: z.string().trim().min(1),
   uiLanguage: uiLanguageSchema.default('en'),
-  learningLanguage: learningLanguageSchema.default('en')
+  learningLanguage: learningLanguageSchema.default('en'),
+  source: z.enum(['speaking_practice', 'quick_drill', 'practice', 'challenge']).optional().default('speaking_practice')
 });
 
 export const conversationMessagePayloadSchema = z.object({

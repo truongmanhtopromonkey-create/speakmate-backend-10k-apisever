@@ -4,13 +4,23 @@ export const SUPPORTED_UI_LANGUAGES = [
   'ja',
   'ko',
   'zh-Hans',
+  'zh-Hant',
   'de',
   'fr',
   'es',
   'pt-BR',
   'it',
   'tr',
-  'ar'
+  'ar',
+  'id',
+  'th',
+  'hi',
+  'ru',
+  'nl',
+  'pl',
+  'sv',
+  'ms',
+  'fil'
 ];
 
 export const UI_LANGUAGE_NAMES = {
@@ -19,13 +29,23 @@ export const UI_LANGUAGE_NAMES = {
   ja: 'Japanese',
   ko: 'Korean',
   'zh-Hans': 'Simplified Chinese',
+  'zh-Hant': 'Traditional Chinese',
   de: 'German',
   fr: 'French',
   es: 'Spanish',
   'pt-BR': 'Brazilian Portuguese',
   it: 'Italian',
   tr: 'Turkish',
-  ar: 'Arabic'
+  ar: 'Arabic',
+  id: 'Indonesian',
+  th: 'Thai',
+  hi: 'Hindi',
+  ru: 'Russian',
+  nl: 'Dutch',
+  pl: 'Polish',
+  sv: 'Swedish',
+  ms: 'Malay',
+  fil: 'Filipino'
 };
 
 const LANGUAGE_ALIASES = {
@@ -43,14 +63,39 @@ const LANGUAGE_ALIASES = {
   italian: 'it',
   turkish: 'tr',
   arabic: 'ar',
+  indonesian: 'id',
+  thai: 'th',
+  hindi: 'hi',
+  russian: 'ru',
+  dutch: 'nl',
+  polish: 'pl',
+  swedish: 'sv',
+  malay: 'ms',
+  filipino: 'fil',
+  tagalog: 'fil',
   zh: 'zh-Hans',
   'zh-cn': 'zh-Hans',
   'zh-hans': 'zh-Hans',
   'zh-sg': 'zh-Hans',
+  'zh-tw': 'zh-Hant',
+  'zh-hk': 'zh-Hant',
+  'zh-mo': 'zh-Hant',
+  'zh-hant': 'zh-Hant',
   pt: 'pt-BR',
   'pt-br': 'pt-BR',
   'pt_br': 'pt-BR',
-  ar: 'ar'
+  ar: 'ar',
+  id: 'id',
+  in: 'id',
+  th: 'th',
+  hi: 'hi',
+  ru: 'ru',
+  nl: 'nl',
+  pl: 'pl',
+  sv: 'sv',
+  ms: 'ms',
+  fil: 'fil',
+  tl: 'fil'
 };
 
 export function normalizeLocale(value, fallback = 'en') {
