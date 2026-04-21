@@ -1,26 +1,41 @@
 import { z } from 'zod';
+import { normalizeLearningLanguage, normalizeLocale, SUPPORTED_UI_LANGUAGES } from '../lib/language.js';
+
+const uiLanguageSchema = z.preprocess(
+  value => normalizeLocale(value),
+  z.enum(SUPPORTED_UI_LANGUAGES)
+);
+
+const learningLanguageSchema = z.preprocess(
+  value => normalizeLearningLanguage(value),
+  z.string().min(2)
+);
 
 export const reviewSpeakingRequestSchema = z.object({
-  transcript: z.string().min(1),
-  topicTitle: z.string().min(1)
+  transcript: z.string().trim().min(1),
+  topicTitle: z.string().trim().min(1),
+  uiLanguage: uiLanguageSchema.default('en'),
+  learningLanguage: learningLanguageSchema.default('en')
 });
 
 export const conversationMessagePayloadSchema = z.object({
   role: z.enum(['user', 'assistant']),
-  content: z.string().min(1)
+  content: z.string().trim().min(1)
 });
 
 export const conversationReplyRequestSchema = z.object({
-  mode: z.string().min(1),
-  goal: z.string().optional().nullable(),
-  roleplay: z.string().optional().nullable(),
-  userMessage: z.string().min(1),
-  history: z.array(conversationMessagePayloadSchema).default([])
+  mode: z.string().trim().min(1),
+  goal: z.string().trim().optional().nullable(),
+  roleplay: z.string().trim().optional().nullable(),
+  userMessage: z.string().trim().min(1),
+  history: z.array(conversationMessagePayloadSchema).default([]),
+  uiLanguage: uiLanguageSchema.default('en'),
+  learningLanguage: learningLanguageSchema.default('en')
 });
 
 export const ttsRequestSchema = z.object({
-  text: z.string().min(1),
-  voice: z.string().default('alloy')
+  text: z.string().trim().min(1),
+  voice: z.string().trim().default('alloy')
 });
 
 export const reviewSpeakingResponseSchema = z.object({
