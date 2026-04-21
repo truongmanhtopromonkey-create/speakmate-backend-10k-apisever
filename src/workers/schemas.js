@@ -33,6 +33,15 @@ export const conversationReplyRequestSchema = z.object({
   learningLanguage: learningLanguageSchema.default('en')
 });
 
+export const conversationVoiceRequestSchema = z.object({
+  mode: z.string().trim().min(1),
+  goal: z.string().trim().optional().nullable(),
+  roleplay: z.string().trim().optional().nullable(),
+  history: z.array(conversationMessagePayloadSchema).default([]),
+  uiLanguage: uiLanguageSchema.default('en'),
+  learningLanguage: learningLanguageSchema.default('en')
+});
+
 export const ttsRequestSchema = z.object({
   text: z.string().trim().min(1),
   voice: z.string().trim().default('alloy')
@@ -86,5 +95,6 @@ export const conversationReplyResponseSchema = z.object({
     hardWords: z.array(z.string()),
     tip: z.string()
   }).nullable().optional(),
-  isFallback: z.boolean().optional()
+  isFallback: z.boolean().optional(),
+  userTranscript: z.string().optional()
 });

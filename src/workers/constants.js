@@ -8,6 +8,7 @@ export const QUEUES = {
 export const JOB_NAMES = {
   REVIEW: 'review-speaking',
   CONVERSATION: 'conversation-reply',
+  CONVERSATION_VOICE: 'conversation-voice',
   PRONUNCIATION: 'conversation-pronunciation',
   TTS: 'tts-generate'
 };
